@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 import DayList from "components/DayList";
-const axios = require('axios');
+import axios from "axios";
 
 
 
@@ -61,12 +61,10 @@ export default function Application(props) {
 
   useEffect(() => {
     axios.get('/api/days')
-      .then(function (response) {
+      .then(response => {
         setDays(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch( e => console.log(e));
   }, []);
 
   return (
