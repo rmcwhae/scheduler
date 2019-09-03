@@ -1,7 +1,4 @@
-
-
-// const getAppointmentsForDay = function(stateArg, dayArg) {
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   const thisDay = state.days.find(weekday => weekday.name === day);
   // console.log('thisDay.appointments', thisDay.appointments);
   if (!thisDay) {
@@ -14,5 +11,3 @@ export function getAppointmentsForDay(state, day) {
   });
   return appointmentsOnThisDay;
 };
-
-// console.log(getAppointmentsForDay(state, "Tuesday"));
