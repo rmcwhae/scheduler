@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 import DayList from "components/DayList";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import axios from "axios";
 
 
@@ -23,22 +23,22 @@ export default function Application(props) {
       axios.get('/api/interviewers'),
       axios.get('/api/appointments')
     ]).then((all) => {
-      // console.log(all);
       setState(prev => ({ ...prev, days: all[0].data, interviewers: all[1].data, appointments: all[2].data }));
     });
-    // axios.get('/api/days').then(response => setDays(response.data)).catch( e => console.log(e));
   }, []);
 
   const appointments = getAppointmentsForDay(state, state.day);
   const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
+  const interview = getInterview(state, appointment.interview);
+  const interviewers = getInterviewersForDay(state, state.day);
   
-    return (
+  return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={interviewers}
       />
     );
   });
