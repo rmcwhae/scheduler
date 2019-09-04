@@ -33,15 +33,16 @@ export default function Application(props) {
   const interviewers = getInterviewersForDay(state, state.day);
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
-  }
-
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
     };
-    bookInterview(interview);
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({ ...state, appointments });
+    console.log(id, interview);
   }
   
   return (
@@ -52,7 +53,6 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
-        onSave={save}
       />
     );
   });
