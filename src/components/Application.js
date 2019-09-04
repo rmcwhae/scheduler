@@ -31,6 +31,18 @@ export default function Application(props) {
   const schedule = appointments.map((appointment) => {
   const interview = getInterview(state, appointment.interview);
   const interviewers = getInterviewersForDay(state, state.day);
+
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    bookInterview(interview);
+  }
   
   return (
       <Appointment
@@ -39,6 +51,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
+        onSave={save}
       />
     );
   });
