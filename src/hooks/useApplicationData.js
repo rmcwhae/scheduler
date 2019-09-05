@@ -12,7 +12,6 @@ function reducer(state, action) {
     case SET_APPLICATION_DATA:
       return { ...state, appointments: action.appointments, days: action.days, interviewers: action.interviewers }
     case SET_INTERVIEW: {
-      console.log(state);
       const newAppoint = state["appointments"];
       newAppoint[action.id]["interview"] = action.interview;
       return { ...state, appointments: newAppoint };
