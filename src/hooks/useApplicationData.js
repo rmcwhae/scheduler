@@ -54,6 +54,14 @@ export default function useApplicationData(props) {
   const setDay = day => dispatch({ type: SET_DAY, day });
 
   useEffect(() => {
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    socket.onmessage = (event) => {
+      const eventData = JSON.parse(event.data);
+      if (eventData.type === SET_INTERVIEW) {
+        dispatch({ type: SET_INTERVIEW, id: eventData.id, interview: eventData.interview });
+      }
+    }
+
     Promise.all([
       axios.get('/api/days'),
       axios.get('/api/interviewers'),
