@@ -83,4 +83,31 @@ describe("Form", () => {
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
+it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+    // 1. Render the Application.
+    const { container } = render(<Application />);
+    // 2. Wait until the text "Lydia Miller-Jones" is displayed. (added in a previous test)
+    await waitForElement(() => getByText(container, "Lydia Miller-Jones"));
+    // 3. Click the "Edit" button on the booked appointment.
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Lydia Miller-Jones")
+    );
+    fireEvent.click(queryByAltText(appointment, "Edit"));
+    // 4. Enter a new student name
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "My new name" }
+    });
+    // 5. Select a new interviewer.
+    fireEvent.click(getByAltText(appointment, "Tori Malcolm"));
+    // 6. Click save
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+    // 7. Wait for the edited appointment.
+    await waitForElement(() => getByText(appointment, "My new name"));
+    // 8. Check that there is still one spot remaining.
+    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"));
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+
+  });
+
 });
