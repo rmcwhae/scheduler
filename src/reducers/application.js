@@ -14,16 +14,17 @@ export default function reducer(state, action) {
       const newDays = state.days.map(
         (item) => {
           if(item.appointments.includes(action.id)) {
-            let newSpots = item.spots; // get existing spots
             if (!state.appointments[action.id].interview && action.interview) { // case 1: brand new appointment
-              newSpots--;
+              return {
+                ...item,  
+                spots: item.spots - 1
+              }
             } else if (state.appointments[action.id].interview && !action.interview) { // case 2: deleting appointment
-              newSpots++;
+              return {
+                ...item,
+                spots: item.spots + 1
+              }
             } //implied case 3: editing appointment doesn't change newSpots
-            return {
-              ...item,  // copy the existing item
-              spots: newSpots  // increase or decrease spots
-            }
           }
           // Leave every other item unchanged
           return item;
