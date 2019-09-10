@@ -16,7 +16,7 @@ export default function reducer(state, action) {
           if(item.appointments.includes(action.id)) {
             if (!state.appointments[action.id].interview && action.interview) { // case 1: brand new appointment
               return {
-                ...item,  
+                ...item,
                 spots: item.spots - 1
               }
             } else if (state.appointments[action.id].interview && !action.interview) { // case 2: deleting appointment
