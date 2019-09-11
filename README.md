@@ -41,9 +41,6 @@ Created by Russell McWhae during the Lighthouse Labs Calgary Web Dev Bootcamp in
 * @testing-library/react-hooks
 * react-test-renderer
 * PostgreSQL database
-
-### Testing dependencies
-
 * Jest
 * Storybook
 * Cypress
@@ -58,7 +55,7 @@ Created by Russell McWhae during the Lighthouse Labs Calgary Web Dev Bootcamp in
 
 4. Start the `schedular-api` server via `npm start`. It should say `Listening on port 8001 in development mode.`
 
-5. Start the `scheduler` (not the api) with `npm start`. It should say `Compiled successfully!` and open a browser window to [http://localhost:8000]().
+5. Start the `scheduler` (not the api) with `npm start`. It should say `Compiled successfully!` and open a browser window to http://localhost:8000.
 
 ## Running Tests
 
