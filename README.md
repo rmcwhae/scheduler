@@ -36,11 +36,25 @@ Created by Russell McWhae during the Lighthouse Labs Calgary Web Dev Bootcamp in
 ## Dependencies
 
 * Node.js
-* Etc.
+* axios
+* @testing-library/react-hooks
+* react-test-renderer
+* PostgreSQL database
+* Jest
+* Storybook
+* Cypress
 
 ## Setup
 
-Install dependencies with `npm install`.
+1. Clone this repository.
+
+2. Install dependencies with `npm install`.
+
+3. Clone the [schedular-api](https://github.com/lighthouse-labs/scheduler-api) repository and follow the instructions in its readme to create the PostgreSQL database.
+
+4. Start the schedular-api server via `npm start`
+
+5. Visit [http://localhost:8000]()
 
 ## Running Webpack Development Server
 
@@ -48,25 +62,24 @@ Install dependencies with `npm install`.
 npm start
 ```
 
-## Running Jest Test Framework
+## Running Tests
 
-```sh
-npm test
-```
+You can run the tests that were used in the development of Interview Schedular to see their output.
 
-## Running Storybook Visual Testbed
+### Jest Test Framework
 
-```sh
-npm run storybook
-```
+Run `npm test` in the root directory.
 
+### Storybook Visual Testbed
 
-## Running Cypress
+Run `npm run storybook` in the root directory.
 
-Running API server in test mode (for correct database seed)
-```sh
-NODE_ENV=test npm start
-```
-```sh
-npm run cypress
-```
+### Cypress In-browser Tests
+
+1. Within the `schedular-api` directory, duplicate the `.env.development` file and rename it to `.env.test`. Change only the PGDATABASE value to `scheduler_test`.
+
+2. Create a new `psql` database called `scheduler_test`
+
+3. Run API server in test mode (to ensure the correct database seed) with `NODE_ENV=test npm start`
+
+4. In the Interview Scheduler root directory (not the API), run `npm run cypress`
