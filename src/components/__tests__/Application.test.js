@@ -7,7 +7,6 @@ import {
   waitForElement,
   fireEvent,
   getByText,
-  prettyDOM,
   getAllByTestId,
   getByAltText,
   getByPlaceholderText,
@@ -34,7 +33,7 @@ describe("Form", () => {
   });
 
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
     
@@ -111,7 +110,6 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
 
   });
   
-  /* test number five */
   it("shows the save error when failing to save an appointment", async () => {
     axios.put.mockRejectedValueOnce();
 
@@ -138,12 +136,11 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
 
   });
 
-/* test number six */
   it("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();
 
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     // 2. Wait until the text "Sally Mally" is displayed.
     await waitForElement(() => getByText(container, "Sally Mally"));
     // 3. Click the "Delete" button on the booked appointment.

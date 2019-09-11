@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import InterviewerListItem from "components/InterviewerListItem";
 
 import "components/InterviewerList.scss";
-// const classNames = require('classnames');
 
 InterviewerList.propTypes = {
   value: PropTypes.number,

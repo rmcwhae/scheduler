@@ -21,3 +21,14 @@ npm test
 ```sh
 npm run storybook
 ```
+
+
+## Running Cypress
+
+Running API server in test mode (for correct database seed)
+```sh
+NODE_ENV=test npm start
+```
+```sh
+npm run cypress
+```
