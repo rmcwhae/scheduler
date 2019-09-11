@@ -19,7 +19,9 @@ describe("Appointments", () => {
   });
 
   it("should edit an interview", () => {
-    cy.get("[alt='Edit']").first().click({ force: true });
+    cy.get("[alt='Edit']").first().click({
+      force: true
+    });
     cy.get("[data-testid=student-name-input]")
       .clear()
       .type("Bart Simpson");
@@ -30,7 +32,9 @@ describe("Appointments", () => {
   });
 
   it("should cancel an interview", () => {
-    cy.get("[alt='Delete']").first().click({ force: true });
+    cy.get("[alt='Delete']").first().click({
+      force: true
+    });
 
     cy.contains("Confirm").click();
 
